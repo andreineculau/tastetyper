@@ -5,6 +5,8 @@ A typer with taste i.e. minimalistic
 * server: NodeJS, CoffeeScript, ExpressJS, ...
 * client: HTML5, CoffeeScript, Marked, HighlightJs, ...
 
+![README](SEEME.png)
+
 
 ## Install and run
 
