@@ -1,0 +1,44 @@
+{
+  "name": "tastetyper",
+  "version": "0.0.1",
+  "description": "A typer with taste i.e. minimalistic",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andreineculau/tastetyper.git"
+  },
+  "keywords": [
+    "blog",
+    "wiki",
+    "markdown",
+    "git"
+  ],
+  "author": "Andrei Neculau <andrei.neculau@gmail.com>",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/andreineculau/tastetyper/issues"
+  },
+  "homepage": "https://github.com/andreineculau/tastetyper",
+  "dependencies": {
+    "bower": "^1.4.1",
+    "coffee-script": "^1.9.3",
+    "debug": "^2.2.0",
+    "express": "^4.13.1",
+    "media-typer": "^0.3.0",
+    "morgan": "^1.6.1",
+    "mustache-express": "^1.2.1",
+    "raw-body": "^2.1.2",
+    "serve-static": "^1.10.0"
+  },
+  "devDependencies": {
+    "bower-update": "^0.1.0"
+  },
+  "scripts": {
+    "postinstall": "node_modules/bower/bin/bower install -F",
+    "start": "./tastetyper"
+  }
+}
