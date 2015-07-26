@@ -1,0 +1,10 @@
+body {
+    padding: 0px;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+#style {
+    position: absolute;
+    right: 0px;
+}
