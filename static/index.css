@@ -12,9 +12,11 @@ body {
 code.hljs {
     display: inline-block !important;
     padding: 0 !important;
+    overflow-x: inherit;
 }
 
 pre code.hljs {
     display: block !important;
-    padding: 0.5em;
+    padding: 0.5em !important;
+    overflow-x: auto;
 }
