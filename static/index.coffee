@@ -30,7 +30,10 @@ $ () ->
         if simplifiedLink.indexOf(base) is 0
           $(this).on 'click', (evt) ->
             evt.preventDefault()
-            url = $(this).attr 'href'
+            currentUrl = window.location.hash.replace /^#/, ''
+            newUrl = $(this).attr 'href'
+            url = resolveUrl currentUrl, newUrl
+            url = url.replace base, ''
             window.location.hash = "\##{url}"
             false
       $('code:not([lang])').each (index, codeBlock) ->
