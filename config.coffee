@@ -1,5 +1,4 @@
 pkg = require './package.json'
-phonetic = require 'phonetic'
 
 module.exports = {
   # backend-only vars
