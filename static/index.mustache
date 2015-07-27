@@ -15,12 +15,12 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
-    <link rel="stylesheet" href="bower_components/highlightjs/styles/{{config.style}}.css" id="selectedStyle">
+    <link rel="stylesheet" href="bower_components/highlightjs/styles/{{config.hljsStyle}}.css" id="selectedHljsStyle">
     <link rel="stylesheet" href="index.css">
     {{& config.stylesheets}}
   </head>
   <body>
-    <select id="style">{{& config.stylesHtml}}</select>
+    <select id="hljsStyle">{{& config.hljsStylesHtml}}</select>
     <div id="content"></div>
 
     <script src="index.coffee" type="text/coffeescript"></script>

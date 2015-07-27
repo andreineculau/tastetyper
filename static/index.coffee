@@ -1,7 +1,7 @@
 $ () ->
   $content = $ '#content'
-  $style = $ '#style'
-  $selectedStyle = $ '#selectedStyle'
+  $hljsStyle = $ '#hljsStyle'
+  $selectedHljsStyle = $ '#selectedHljsStyle'
 
   base = do () ->
     link = document.createElement 'a'
@@ -45,12 +45,16 @@ $ () ->
     url = evt.target.location.hash.replace /^#/, ''
     tryLoading url
 
-  $style.on 'change', (evt) ->
-    style = this.value
-    href = $selectedStyle.attr 'href'
-    href = href.split('/').slice(0, -1).concat(["#{style}.css"]).join '/'
-    $selectedStyle.attr 'href', href
-    window.localStorage.setItem 'style', style
+  $hljsStyle.on 'change', (evt) ->
+    hljsStyle = this.value
+    href = $selectedHljsStyle.attr 'href'
+    href = href.split('/').slice(0, -1).concat(["#{hljsStyle}.css"]).join '/'
+    $selectedHljsStyle.attr 'href', href
+    window.localStorage.setItem 'hljsStyle', hljsStyle
+
+  localHljsStyle = window.localStorage.getItem 'hljsStyle'
+  if localHljsStyle?
+    $("> option[value=\"#{localHljsStyle}\"]", $hljsStyle).prop('selected', 'selected').change()
 
   url = window.location.hash.replace /^#/, ''
   tryLoading url
