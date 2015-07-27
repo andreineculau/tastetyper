@@ -23,6 +23,6 @@ module.exports = exports = (config = {}) ->
   app.get '/', (req, res, next) ->
     res.render 'index', {config}
 
-  app.use '/tastes', serveStatic 'tastes'
+  app.use '/tastes', serveStatic config.tastesDir
   app.use serveStatic 'static'
   app

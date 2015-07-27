@@ -16,6 +16,7 @@ module.exports = {
       'Server': "#{pkg.name}/#{pkg.version}"
   ],
   subpath: '/'             # host tastebin under a subpath
+  tastesDir: 'tastes'      # where are tastes stored
   maxSize: '128kb'         # allow only tastes smaller than 128 kilobytes
   morgan:                  # logging https://github.com/expressjs/morgan
     format: 'common'
