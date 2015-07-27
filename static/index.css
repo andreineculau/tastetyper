@@ -8,3 +8,13 @@ body {
     position: absolute;
     right: 0px;
 }
+
+code.hljs {
+    display: inline-block !important;
+    padding: 0 !important;
+}
+
+pre code.hljs {
+    display: block !important;
+    padding: 0.5em;
+}

@@ -33,7 +33,8 @@ $ () ->
             url = $(this).attr 'href'
             window.location.hash = "\##{url}"
             false
-
+      $('code:not([lang])').each (index, codeBlock) ->
+        $(codeBlock).addClass 'hljs'
 
     fail = () ->
 
