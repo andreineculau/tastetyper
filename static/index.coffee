@@ -147,7 +147,7 @@ $ () ->
 
   tryLoading = (url) ->
     unless url?.length
-      window.location.hash = '#index.md'
+      window.location.hash = '#README.md'
       return
 
     done = (body, status, xhr) ->
