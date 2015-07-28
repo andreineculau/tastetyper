@@ -30,6 +30,9 @@ In production, try
 ## Tested browsers
 
 * Chrome 44
+* Opera 30
+* Safari 8
+* Firefox 39
 
 
 ## License
