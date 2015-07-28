@@ -1,6 +1,9 @@
 fs = require 'fs'
 path = require 'path'
+execFile = require('child_process').execFile
+execFileSync = require('child_process').execFileSync
 debug = require('debug') 'tastetyper'
+
 express = require 'express'
 morgan = require 'morgan'
 serveStatic = require 'serve-static'
@@ -11,8 +14,10 @@ cookieParser = require 'cookie-parser'
 module.exports = exports = (config = {}) ->
   defaultTheme = config.theme
 
+  config.hljsStyles ?= execFileSync('/bin/sh', ['-c', "ls"], {cwd: "#{__dirname}/static/bower_components/highlightjs/styles"}).toString().trim().split '\n'
   config.hljsStylesHtml = ['\n']
   for hljsStyle in config.hljsStyles
+    hljsStyle = hljsStyle.replace /\.css$/, ''
     selected = ''
     selected = ' selected'  if hljsStyle is config.hljsStyle
     config.hljsStylesHtml.push "<option#{selected} value=\"#{hljsStyle}\">#{hljsStyle}</option>\n"
