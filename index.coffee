@@ -57,3 +57,16 @@ module.exports = exports = (config = {}) ->
   app.use '/tastes', serveStatic config.tastesDir
   app.use serveStatic 'static'
   app
+
+
+exports.saveFile = (relPath, config, req, res, next) ->
+  contentType = req.headers['content-type']
+  encoding = 'utf-8'
+  encoding = mediaTyper.parse(contentType).parameters.charset  if contentType?
+  rawBody req, {
+    length: req.headers['content-length']
+    limit: config.maxSize
+    encoding
+  }, (err, data) ->
+    return next err  if err?
+    fs.writeFile relPath, data, {encoding}, next
