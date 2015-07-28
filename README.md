@@ -26,6 +26,8 @@ In production, try
 * [upstarter](https://github.com/carlos8f/node-upstarter)
 * ...
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/andreineculau/tastetyper)
+
 
 ## Tested browsers
 
