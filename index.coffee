@@ -17,7 +17,6 @@ module.exports = exports = (config = {}) ->
     selected = ' selected'  if hljsStyle is config.hljsStyle
     config.hljsStylesHtml.push "<option#{selected} value=\"#{hljsStyle}\">#{hljsStyle}</option>\n"
   config.hljsStylesHtml = config.hljsStylesHtml.join ''
-  config.hljsStylesHtml = ''  if config.hljsStyles.length <= 1
 
   app = express.Router {strict: true}
   {saveFile} = exports
@@ -40,7 +39,6 @@ module.exports = exports = (config = {}) ->
       selected = ' selected'  if theme is config.theme
       config.themesHtml.push "<option#{selected} value=\"#{theme}\">#{theme}</option>\n"
     config.themesHtml = config.themesHtml.join ''
-    config.themesHtml = ''  if config.themes.length <= 1
 
     res.render tpl, {config}
 
