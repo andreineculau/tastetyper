@@ -7,6 +7,9 @@ body {
 #hljsStyle {
     position: absolute;
     right: 0px;
+    top: 0px;
+    opacity: 0.25;
+    z-index: 100;
 }
 
 code.hljs {
@@ -19,4 +22,6 @@ pre code.hljs {
     display: block !important;
     padding: 0.5em !important;
     overflow-x: auto;
+#hljsStyle:hover {
+    opacity: 1;
 }
