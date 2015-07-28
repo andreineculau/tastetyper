@@ -23,6 +23,13 @@ module.exports = exports = (config = {}) ->
     config.hljsStylesHtml.push "<option#{selected} value=\"#{hljsStyle}\">#{hljsStyle}</option>\n"
   config.hljsStylesHtml = config.hljsStylesHtml.join ''
 
+  config.tastesDir = path.resolve __dirname, config.tastesDir
+
+  if config.git?.enable
+    execFileSync '/bin/sh', ['-c', "git init"], {cwd: config.tastesDir}
+    if config.git.remoteUrl?
+      execFileSync '/bin/sh', ['-c', "git config remote.origin.url #{config.git.remoteUrl}"], {cwd: config.tastesDir}
+
   app = express.Router {strict: true}
   {saveFile} = exports
 
@@ -53,8 +60,7 @@ module.exports = exports = (config = {}) ->
       return res.status(414).send()
     if "/#{filename}" isnt path.resolve '/', filename
       return res.status(400).send()
-    relPath = "tastes/#{filename}"
-    saveFile relPath, config, req, res, (err) ->
+    saveFile filename, config, req, res, (err) ->
       return next err  if err?
       res.status(204).send()
 
@@ -63,7 +69,7 @@ module.exports = exports = (config = {}) ->
   app
 
 
-exports.saveFile = (relPath, config, req, res, next) ->
+exports.saveFile = (filename, config, req, res, next) ->
   contentType = req.headers['content-type']
   encoding = 'utf-8'
   encoding = mediaTyper.parse(contentType).parameters.charset  if contentType?
@@ -73,4 +79,12 @@ exports.saveFile = (relPath, config, req, res, next) ->
     encoding
   }, (err, data) ->
     return next err  if err?
-    fs.writeFile relPath, data, {encoding}, next
+    fs.writeFile path.join(config.tastesDir, filename), data, {encoding}, (err) ->
+      return next err  if err?
+      return next()  unless config.git?.enable
+      execFile '/bin/sh', ['-c', "git add -f #{filename}"], {cwd: config.tastesDir}, (err) ->
+        return next err  if err?
+        execFile '/bin/sh', ['-c', "git commit -m 'updated #{filename}'"], {cwd: config.tastesDir}, (err) ->
+          return next err  if err?
+          return next()  unless config.git.remoteUrl?
+          execFile '/bin/sh', ['-c', "git push -f origin HEAD:#{config.git.upstream}"], {cwd: config.tastesDir}, next
