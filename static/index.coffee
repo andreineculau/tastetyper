@@ -99,7 +99,7 @@ $ () ->
       url
       contentType: 'application/octet-stream'
       data: currentContent
-    }).always(always).done(done).fail(fail)
+    }).done(done).fail(fail)
     false
 
   edit = (content) ->
