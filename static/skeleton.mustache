@@ -15,14 +15,23 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css">
     <link rel="stylesheet" href="bower_components/highlightjs/styles/{{config.hljsStyle}}.css" id="selectedHljsStyle">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="skeletong.css">
     {{& config.stylesheets}}
   </head>
   <body>
     <select id="hljsStyle">{{& config.hljsStylesHtml}}</select>
     <select id="theme">{{& config.themesHtml}}</select>
-    <div id="content"></div>
+
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <div id="content"></div>
+        </div>
+      </div>
+    </div>
 
     <script src="index.coffee" type="text/coffeescript"></script>
 

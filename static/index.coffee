@@ -1,5 +1,6 @@
 $ () ->
   $content = $ '#content'
+  $theme = $ '#theme'
   $hljsStyle = $ '#hljsStyle'
   $selectedHljsStyle = $ '#selectedHljsStyle'
 
@@ -49,6 +50,15 @@ $ () ->
     url = evt.target.location.hash.replace /^#/, ''
     tryLoading url
 
+  $theme.on 'change', (evt) ->
+    theme = this.value
+    $.cookie 'theme', theme
+    window.location.reload true
+
+  localTheme = $.cookie 'theme'
+  if localTheme?
+    $("> option[value=\"#{localTheme}\"]", $theme).prop 'selected', 'selected'
+
   $hljsStyle.on 'change', (evt) ->
     hljsStyle = this.value
     href = $selectedHljsStyle.attr 'href'
@@ -58,7 +68,7 @@ $ () ->
 
   localHljsStyle = window.localStorage.getItem 'hljsStyle'
   if localHljsStyle?
-    $("> option[value=\"#{localHljsStyle}\"]", $hljsStyle).prop('selected', 'selected').change()
+    $("> option[value=\"#{localHljsStyle}\"]", $hljsStyle).prop 'selected', 'selected'
 
   url = window.location.hash.replace /^#/, ''
   tryLoading url

@@ -8,7 +8,9 @@
     "modernizr": "~2.8.3",
     "coffee-script": "1.9.3",
     "marked": "~0.3.3",
-    "resolve-url": "~0.2.1"
+    "resolve-url": "~0.2.1",
+    "skeleton": "~2.0.4",
+    "jquery-cookie": "~1.4.1"
   },
   "devDependencies": {}
 }

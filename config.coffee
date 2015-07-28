@@ -25,6 +25,11 @@ module.exports = {
   title: "#{pkg.name}/#{pkg.version}"
   stylesheets: ''             # extra stylesheets
   scripts: ''                 # extra scripts
+  theme: 'index'              # default theme
+  themes: [                   # available themes
+    'index'
+    'skeleton'
+  ]
   hljsStyle: 'solarized_dark' # default style
   hljsStyles: [               # available styles
     'agate'
