@@ -44,12 +44,13 @@ module.exports = exports = (config = {}) ->
 
     res.render tpl, {config}
 
-  app.put '/tastes/:filename', (req, res, next) ->
-    if req.params.filename.length > config.maxFilenameLength
+  app.put /^\/tastes\/(.+)/, (req, res, next) ->
+    filename = req.params[0]
+    if filename.length > config.maxFilenameLength
       return res.status(414).send()
-    if "/#{req.params.filename}" isnt path.resolve '/', req.params.filename
+    if "/#{filename}" isnt path.resolve '/', filename
       return res.status(400).send()
-    relPath = "tastes/#{req.params.filename}"
+    relPath = "tastes/#{filename}"
     saveFile relPath, config, req, res, (err) ->
       return next err  if err?
       res.status(204).send()
