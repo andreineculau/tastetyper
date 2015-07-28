@@ -28,3 +28,19 @@
 #theme:hover {
     opacity: 1;
 }
+
+#newTaste {
+    display: none;
+}
+
+#content {
+    outline: none;
+}
+
+body.editing #content {
+    white-space: pre;
+    word-wrap: break-word;
+    -webkit-line-break: after-white-space;
+    font-family: monospace, monospace;
+    font-size: 1em;
+}

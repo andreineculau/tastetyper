@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css">
     <link rel="stylesheet" href="bower_components/highlightjs/styles/{{config.hljsStyle}}.css" id="selectedHljsStyle">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="skeletong.css">
+    <link rel="stylesheet" href="skeleton.css">
     {{& config.stylesheets}}
   </head>
   <body>
@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
+    <div id="newTaste">{{& config.newTaste}}</div>
 
     <script src="index.coffee" type="text/coffeescript"></script>
 
@@ -42,6 +43,7 @@
     <script src="bower_components/marked/lib/marked.js"></script>
     <script src="bower_components/highlightjs/highlight.pack.js"></script>
     <script src="bower_components/resolve-url/resolve-url.js"></script>
+    <script src="bower_components/he/he.js"></script>
     {{& config.scripts}}
     <script src="bower_components/coffee-script/extras/coffee-script.js"></script>
   </body>

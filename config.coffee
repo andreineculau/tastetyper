@@ -18,11 +18,18 @@ module.exports = {
   subpath: '/'             # host tastebin under a subpath
   tastesDir: 'tastes'      # where are tastes stored
   maxSize: '128kb'         # allow only tastes smaller than 128 kilobytes
+  maxFilenameLength: 256   # allow tastes to have maximum 256 characters
   morgan:                  # logging https://github.com/expressjs/morgan
     format: 'common'
 
   # backend & frontend vars
   title: "#{pkg.name}/#{pkg.version}"
+  newTaste: [              # content for the "new taste" page
+    'A. \#{metaKeyName}+E to Edit'
+    'B. \#{metaKeyName}+S to Save'
+    '   \#{metaKeyName}+Shift+S to Save As'
+    'C. Esc to cancel editing'
+  ].join '\n'
   stylesheets: ''             # extra stylesheets
   scripts: ''                 # extra scripts
   theme: 'index'              # default theme
