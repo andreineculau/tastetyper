@@ -35,7 +35,6 @@ module.exports = {
   theme: 'index'              # default theme
   themes: [                   # available themes
     'index'
-    'skeleton'
   ]
   hljsStyle: 'solarized_dark' # default style
   hljsStyles: [               # available styles
