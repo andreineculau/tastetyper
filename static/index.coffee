@@ -156,6 +156,7 @@ $ () ->
       lock()
 
     fail = () ->
+      setContent ''
       edit newTaste
 
     lock()
