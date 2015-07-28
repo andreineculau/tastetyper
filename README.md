@@ -1,6 +1,6 @@
 # Tastetyper
 
-A typer with taste i.e. minimalistic
+A wiki with taste i.e. minimalistic
 
 * server: NodeJS, CoffeeScript, ExpressJS, ...
 * client: HTML5, CoffeeScript, Marked, HighlightJs, ...

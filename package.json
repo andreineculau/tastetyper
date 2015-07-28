@@ -1,7 +1,7 @@
 {
   "name": "tastetyper",
   "version": "0.3.0",
-  "description": "A typer with taste i.e. minimalistic",
+  "description": "A wiki with taste i.e. minimalistic",
   "repository": {
     "type": "git",
     "url": "git://github.com/andreineculau/tastetyper.git"
