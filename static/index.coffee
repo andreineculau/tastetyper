@@ -1,5 +1,5 @@
 $ () ->
-  currentContent = ''
+  contentSrc = ''
   $window = $ window
   $body = $ window.document.body
   $theme = $ '#theme'
@@ -19,12 +19,12 @@ $ () ->
   getDomContent = () ->
     $content[0].innerText
 
-  setDomContent = (content) ->
+  setContent = (content) ->
     if 'innerText' of $content[0]
-      $content[0].innerText = content
+      contentSrc = $content[0].innerText = content
     else
       content = content.replace
-      $content[0].innerHTML = he.encode content
+      contentSrc = $content[0].innerHTML = he.encode content
 
   wantsToEdit = (evt) ->
     metaKey = evt.ctrlKey
@@ -49,7 +49,7 @@ $ () ->
 
   cleanupPaste = () ->
     # erase any styling
-    setDomContent getDomContent()
+    setContent getDomContent()
 
   scheduleCleanupPaste = (evt) ->
     setTimeout cleanupPaste, 100
@@ -83,29 +83,28 @@ $ () ->
         break  if filename is promptFilename
     url = "tastes/#{filename}"
 
-    currentContent = getDomContent().trim().replace(/\s+\n/g, '\n')
-    currentContent += '\n'  if currentContent.length
-    setDomContent currentContent  if currentContent isnt getDomContent()
-    return true  unless currentContent.length
+    contentSrc = getDomContent().trim().replace(/\s+\n/g, '\n')
+    contentSrc += '\n'  if contentSrc.length
+    setContent contentSrc  if contentSrc isnt getDomContent()
+    return true  unless contentSrc.length
 
     done = (body, status, xhr) ->
       window.location.hash = filename
 
     fail = () ->
       window.alert "Failed to save"
-      edit currentContent
+      edit()
 
     lock()
     $.ajax({
       method: 'PUT'
       url
       contentType: 'application/octet-stream'
-      data: currentContent
+      data: contentSrc
     }).done(done).fail(fail)
     false
 
-  edit = (content) ->
-    content ?= getDomContent()
+  edit = (content = contentSrc) ->
     $content.html content
     $content.attr('contentEditable', 'true').focus()
     $content.on 'blur', keepFocus
@@ -114,9 +113,7 @@ $ () ->
     $body.on 'keydown', maybeSave
     $body.on 'keydown', maybeCancelEditing
 
-  lock = (content, lines = []) ->
-    content ?= getDomContent()
-
+  lock = (content = contentSrc) ->
     options = {
       highlight: (code, language) ->
         return hljs.highlight(language, code).value
@@ -153,8 +150,9 @@ $ () ->
       return
 
     done = (body, status, xhr) ->
-      currentContent = body
-      lock body
+      setContent body
+      edit()
+      lock()
 
     fail = () ->
       edit newTaste
