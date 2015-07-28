@@ -107,8 +107,9 @@ $ () ->
   edit = (content = contentSrc) ->
     $content.html content
     $content.attr('contentEditable', 'true').focus()
-    $content.on 'blur', keepFocus
     $body.addClass 'editing'
+    $content.on 'blur', keepFocus
+    $body.off 'keydown', maybeStartEditing
     $body.off 'keydown', disableSave
     $body.on 'keydown', maybeSave
     $body.on 'keydown', maybeCancelEditing
@@ -137,8 +138,8 @@ $ () ->
           window.location.hash = "\##{url}"
           false
     $content.attr 'contentEditable', 'false'
-    $content.off 'blur', keepFocus
     $body.removeClass 'editing'
+    $content.off 'blur', keepFocus
     $body.on 'keydown', maybeStartEditing
     $body.on 'keydown', disableSave
     $body.off 'keydown', maybeSave
@@ -159,7 +160,6 @@ $ () ->
 
     lock()
     $body.off 'keydown', maybeStartEditing
-    $body.off 'keydown', maybeCancelEditing
     $.ajax({
       url: "tastes/#{url}"
     }).done(done).fail(fail)
