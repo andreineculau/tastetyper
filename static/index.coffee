@@ -14,7 +14,8 @@ $ () ->
   base = do () ->
     link = document.createElement 'a'
     link.setAttribute 'href', window.location.toString()
-    "#{link.protocol}//#{link.hostname}:#{link.port}#{link.pathname}"
+    link.port = ":#{link.port}"  if link.port.length
+    "#{link.protocol}//#{link.hostname}#{link.port}#{link.pathname}"
 
   getDomContent = () ->
     $content[0].innerText
@@ -127,7 +128,8 @@ $ () ->
     html = html.replace /src=(['"])/g, 'src=$1tastes/'
     $content.html html
     $('a', $content).each (index, link) ->
-      simplifiedLink = "#{link.protocol}//#{link.hostname}:#{link.port}#{link.pathname}"
+      link.port = ":#{link.port}"  if link.port.length
+      simplifiedLink = "#{link.protocol}//#{link.hostname}#{link.port}#{link.pathname}"
       if simplifiedLink.indexOf(base) is 0
         $(this).on 'click', (evt) ->
           evt.preventDefault()
