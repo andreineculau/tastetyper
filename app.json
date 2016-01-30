@@ -1,0 +1,12 @@
+{
+  "name": "Tastetyper",
+  "description": "A wiki with taste i.e. minimalistic",
+  "keywords": [
+    "blog",
+    "wiki",
+    "markdown",
+    "git"
+  ],
+  "repository": "https://github.com/andreineculau/tastetyper",
+  "logo": "https://raw.githubusercontent.com/andreineculau/tastetyper/master/static/iconmonstr-keyboard-15-icon-256.png"
+}
